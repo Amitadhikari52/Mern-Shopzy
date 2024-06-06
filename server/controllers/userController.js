@@ -1,7 +1,7 @@
 import { User } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 
-//REGISTER LOGIC->
+// user register
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -32,7 +32,7 @@ export const registerUser = async (req, res) => {
   }
 };
 
-//LOGIN LOGIC->
+// user login
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -63,6 +63,26 @@ export const loginUser = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error in login",
+      error,
+    });
+  }
+};
+
+// get All users
+export const users = async (req, res) => {
+  try {
+    let users = await User.find().sort({ createdAt: -1 });
+    res.status(200).send({
+      success: true,
+      message: "User getting Successfully",
+      users,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in getting users",
+      error,
     });
   }
 };

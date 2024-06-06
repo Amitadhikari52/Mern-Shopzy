@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import cors from "cors";
 import userRoutes from "./routes/userRoute.js";
+import productRoutes from "./routes/productRoute.js";
 
 //configure env
 dotenv.config();
@@ -21,13 +22,14 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cors());
 
-//rest api
+//testing route
 app.get("/", (req, res) => {
   res.send("Welcome to the Shopzy");
 });
 
 //routes
 app.use("/api/user", userRoutes);
+app.use("/api/product", productRoutes);
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${process.env.PORT}`.bgCyan.white);
