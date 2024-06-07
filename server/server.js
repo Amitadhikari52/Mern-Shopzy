@@ -6,6 +6,7 @@ import cors from "cors";
 import userRoutes from "./routes/userRoute.js";
 import productRoutes from "./routes/productRoute.js";
 import cartRoutes from "./routes/cartRoute.js";
+import addressRoutes from "./routes/addressRoute.js";
 
 //configure env
 dotenv.config();
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
 app.use("/api/user", userRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/address", addressRoutes);
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${process.env.PORT}`.bgCyan.white);
