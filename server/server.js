@@ -18,11 +18,17 @@ connectDB();
 const app = express();
 
 //PORT
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3009;
 
 //middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 //testing route
 app.get("/", (req, res) => {
