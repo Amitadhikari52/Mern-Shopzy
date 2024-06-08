@@ -4,20 +4,23 @@ import axios from "axios";
 
 const AppState = (props) => {
   const URL = "http://localhost:3009";
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      const api = await axios.get(`${URL}/api/product/get-product`, {
-        headers: {
-          "Content-Type": "Application/json",
-        },
-        withCredentials: true,
-      });
-      console.log(api.data.products);
-      setProducts(api.data.products);
+    const fetchProducts = async () => {
+      try {
+        const api = await axios.get(`${URL}/api/product/get-product`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+        setProducts(api.data.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
-    fetchProduct();
+    fetchProducts();
   }, []);
 
   return (
