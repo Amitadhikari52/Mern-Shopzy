@@ -1,28 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../../context/AppContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const RelatedProduct = ({ category }) => {
+const SearchProduct = () => {
   const { products } = useContext(AppContext);
-  const [relatedProduct, setRelatedProduct] = useState([]);
+  const [searchProduct, setSearchProduct] = useState([]);
+
+  const { term } = useParams();
 
   useEffect(() => {
-    if (products && category) {
-      setRelatedProduct(
-        products.filter(
-          (data) => data.category.toLowerCase() === category.toLowerCase()
-        )
-      );
-    }
-  }, [category, products]);
+    setSearchProduct(
+      products.filter((data) =>
+        data.title.toLowerCase().includes(term.toLowerCase())
+      )
+    );
+  }, [term, products]);
 
   return (
     <>
       <div className="container text-center">
-        <h2 className="related-product-heading">Related Product</h2>
         <div className="container d-flex justify-content-center align-items-center">
           <div className="row container d-flex justify-content-center align-items-center my-5">
-            {relatedProduct.map((product) => (
+            {searchProduct.map((product) => (
               <div
                 key={product._id}
                 className="my-3 col-md-4 d-flex justify-content-center align-items-center"
@@ -66,4 +65,4 @@ const RelatedProduct = ({ category }) => {
   );
 };
 
-export default RelatedProduct;
+export default SearchProduct;

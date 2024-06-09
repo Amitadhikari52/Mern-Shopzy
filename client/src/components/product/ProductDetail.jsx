@@ -58,11 +58,14 @@ const ProductDetail = () => {
           <div className="my-5">
             <button
               className="btn btn-danger mx-3"
-              style={{ fontWeight: "bold" }}
+              // style={{ fontWeight: "bold" }}
             >
               Buy Now
             </button>
-            <button className="btn btn-warning" style={{ fontWeight: "bold" }}>
+            <button
+              className="btn btn-warning"
+              // style={{ fontWeight: "bold" }}
+            >
               Add To Cart
             </button>
           </div>
