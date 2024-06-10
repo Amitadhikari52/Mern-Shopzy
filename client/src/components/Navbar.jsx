@@ -32,12 +32,14 @@ const Navbar = () => {
           </form>
           <div className="right">
             <button className="btn btn-warning mx-3">Cart</button>
-            <button className="btn btn-warning mx-3">Profile</button>
-            <button className="btn btn-warning mx-3">Login</button>
+            <button className="btn btn-success mx-3">Profile</button>
+            <Link to={"/login"} className="btn btn-secondary mx-3">
+              Login
+            </Link>
             <Link to={"/register"} className="btn btn-info mx-3">
               Register
             </Link>
-            <button className="btn btn-warning mx-3">Logout</button>
+            <button className="btn btn-danger mx-3">Logout</button>
             {/* <button className="btn btn-warning">Logout</button> */}
           </div>
         </div>

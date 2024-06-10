@@ -5,6 +5,8 @@ import axios from "axios";
 const AppState = (props) => {
   const URL = "http://localhost:3009";
   const [products, setProducts] = useState([]);
+  const [token, setToken] = useState([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,11 +42,49 @@ const AppState = (props) => {
       }
     );
     return api.data;
-    // console.log("user register", api);
+  };
+
+  // login user
+  const login = async (email, password) => {
+    try {
+      const api = await axios.post(
+        `${URL}/api/user/login`,
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      setToken(api.data.token);
+      setIsAuthenticated(true);
+      localStorage.setItem("token", api.data.token);
+      return api.data;
+    } catch (error) {
+      console.error("Error during login:", error);
+      return {
+        success: false,
+        message: "An error occurred during login. Please try again.",
+      };
+    }
   };
 
   return (
-    <AppContext.Provider value={{ products, register }}>
+    <AppContext.Provider
+      value={{
+        products,
+        register,
+        login,
+        URL,
+        token,
+        setIsAuthenticated,
+        isAuthenticated,
+      }}
+    >
       {props.children}
     </AppContext.Provider>
   );

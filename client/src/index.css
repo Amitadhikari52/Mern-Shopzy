@@ -1,8 +1,8 @@
 body {
   /* background-color: #f0f2f5; */
 
-  background-color: black;
-  color: white;
+  /* background-color: black;
+  color: white; */
 }
 
 body::-webkit-scrollbar {
@@ -29,6 +29,30 @@ body::-webkit-scrollbar {
 /* Define hover effects for btn-primary */
 .btn-primary:hover {
   background-color: darkblue; /* Change to a darker blue */
+  color: white; /* Change text color to white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+/* Define hover effects for btn-success */
+.btn-success:hover {
+  background-color: darkgreen; /* Change to a darker green */
+  color: white; /* Change text color to white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+/* Define hover effects for btn-secondary */
+.btn-secondary:hover {
+  background-color: gray; /* Change to a darker gray */
+  color: white; /* Change text color to white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+/* Define hover effects for btn-info */
+.btn-info:hover {
+  background-color: deepskyblue; /* Change to a darker blue */
   color: white; /* Change text color to white */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
   transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
