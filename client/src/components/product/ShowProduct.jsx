@@ -3,12 +3,12 @@ import AppContext from "../../context/AppContext";
 import { Link } from "react-router-dom";
 
 const ShowProduct = () => {
-  const { products } = useContext(AppContext);
+  const { products, filteredData } = useContext(AppContext);
   return (
     <>
       <div className="container d-flex justify-content-center align-items-center">
         <div className="row container d-flex justify-content-center align-items-center my-5">
-          {products?.map((product) => (
+          {filteredData?.map((product) => (
             <div
               key={product._id}
               className="my-3 col-md-4 d-flex justify-content-center align-items-center"

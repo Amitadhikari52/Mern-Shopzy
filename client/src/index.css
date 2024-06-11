@@ -1,8 +1,8 @@
 body {
   /* background-color: #f0f2f5; */
 
-  /* background-color: black;
-  color: white; */
+  background-color: black;
+  color: white;
 }
 
 body::-webkit-scrollbar {
@@ -107,6 +107,25 @@ body::-webkit-scrollbar {
 
 .search_bar input:focus {
   outline: none;
+}
+
+/* subbar css */
+.sub_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: blueviolet;
+}
+
+.sub_bar .items {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.sub_bar .items:hover {
+  background-color: black;
+  cursor: pointer;
 }
 
 /* register css */

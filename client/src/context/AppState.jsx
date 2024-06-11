@@ -7,6 +7,7 @@ const AppState = (props) => {
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,13 +18,15 @@ const AppState = (props) => {
           },
           withCredentials: true,
         });
+        console.log(api.data.products);
         setProducts(api.data.products);
+        setFilteredData(api.data.products);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
     fetchProducts();
-  }, []);
+  }, [token]);
 
   // register user
   const register = async (name, email, password) => {
@@ -83,6 +86,8 @@ const AppState = (props) => {
         token,
         setIsAuthenticated,
         isAuthenticated,
+        filteredData,
+        setFilteredData,
       }}
     >
       {props.children}
