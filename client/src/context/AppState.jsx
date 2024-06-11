@@ -8,6 +8,7 @@ const AppState = (props) => {
   const [token, setToken] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
+  const [user, setUser] = useState();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,12 +22,22 @@ const AppState = (props) => {
         console.log(api.data.products);
         setProducts(api.data.products);
         setFilteredData(api.data.products);
+        userProfile();
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
     fetchProducts();
   }, [token]);
+
+  useEffect(() => {
+    let lsToken = localStorage.getItem("token");
+    if (lsToken) {
+      setToken(lsToken);
+      setIsAuthenticated(true);
+    }
+    // setToken(localStorage.getItem('token'))
+  }, []);
 
   // register user
   const register = async (name, email, password) => {
@@ -83,6 +94,23 @@ const AppState = (props) => {
     localStorage.removeItem("token");
   };
 
+  //user profile
+  const userProfile = async () => {
+    try {
+      const api = await axios.get(`${URL}/api/user/profile`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        withCredentials: true,
+      });
+      // console.log("user profile", api.data);
+      setUser(api.data.user);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -96,6 +124,7 @@ const AppState = (props) => {
         filteredData,
         setFilteredData,
         logout,
+        user,
       }}
     >
       {props.children}

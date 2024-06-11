@@ -52,7 +52,9 @@ const Navbar = () => {
             {isAuthenticated && (
               <>
                 <button className="btn btn-warning mx-3">Cart</button>
-                <button className="btn btn-success mx-3">Profile</button>
+                <Link to={"/profile"} className="btn btn-success mx-3">
+                  Profile
+                </Link>
                 <button
                   className="btn btn-danger mx-3"
                   onClick={() => {
