@@ -76,6 +76,13 @@ const AppState = (props) => {
     }
   };
 
+  // logout user
+  const logout = () => {
+    setIsAuthenticated(false);
+    setToken("");
+    localStorage.removeItem("token");
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -88,6 +95,7 @@ const AppState = (props) => {
         isAuthenticated,
         filteredData,
         setFilteredData,
+        logout,
       }}
     >
       {props.children}
