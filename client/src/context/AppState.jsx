@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AppContext from "./AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AppState = (props) => {
   const URL = "http://localhost:3009";
@@ -9,6 +10,8 @@ const AppState = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
   const [user, setUser] = useState();
+  const [cart, setCart] = useState([]);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,7 +31,8 @@ const AppState = (props) => {
       }
     };
     fetchProducts();
-  }, [token]);
+    userCart();
+  }, [token, reload]);
 
   useEffect(() => {
     let lsToken = localStorage.getItem("token");
@@ -50,7 +54,7 @@ const AppState = (props) => {
       },
       {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "Application/json",
         },
         withCredentials: true,
       }
@@ -69,7 +73,7 @@ const AppState = (props) => {
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "Application/json",
           },
           withCredentials: true,
         }
@@ -99,7 +103,7 @@ const AppState = (props) => {
     try {
       const api = await axios.get(`${URL}/api/user/profile`, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "Application/json",
           Authorization: token,
         },
         withCredentials: true,
@@ -109,6 +113,84 @@ const AppState = (props) => {
     } catch (error) {
       console.error("Error fetching products:", error);
     }
+  };
+
+  // Add to cart
+  const addToCart = async (productId, title, price, quantity, imgSrc) => {
+    try {
+      const api = await axios.post(
+        `${URL}/api/cart/add-cart`,
+        { productId, title, price, quantity, imgSrc },
+        {
+          headers: {
+            "Content-Type": "Application/json",
+            Authorization: token,
+          },
+          withCredentials: true,
+        }
+      );
+      setReload(!reload);
+      toast.success(api.data.message);
+      console.log("my cart", api);
+    } catch (error) {
+      toast.error(api.data.message);
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  //user cart
+  const userCart = async () => {
+    const api = await axios.get(`${URL}/api/cart/get-cart`, {
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: token,
+      },
+      withCredentials: true,
+    });
+    setCart(api.data.cart);
+  };
+
+  // qty --
+  const decreaseQty = async (productId, quantity) => {
+    const api = await axios.post(
+      `${URL}/api/cart/decrease-qty`,
+      { productId, quantity },
+      {
+        headers: {
+          "Content-Type": "Application/json",
+          Authorization: token,
+        },
+        withCredentials: true,
+      }
+    );
+    setReload(!reload);
+    toast.success(api.data.message);
+  };
+
+  // remove item from cart
+  const removeFromCart = async (productId) => {
+    const api = await axios.delete(`${URL}/api/cart/remove-cart/${productId}`, {
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: token,
+      },
+      withCredentials: true,
+    });
+    setReload(!reload);
+    toast.success(api.data.message);
+  };
+
+  // clear cart
+  const clearCart = async () => {
+    const api = await axios.delete(`${URL}/api/cart/clear-cart`, {
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: token,
+      },
+      withCredentials: true,
+    });
+    setReload(!reload);
+    toast.success(api.data.message);
   };
 
   return (
@@ -125,6 +207,11 @@ const AppState = (props) => {
         setFilteredData,
         logout,
         user,
+        addToCart,
+        cart,
+        decreaseQty,
+        removeFromCart,
+        clearCart,
       }}
     >
       {props.children}

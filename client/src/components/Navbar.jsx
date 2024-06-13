@@ -8,8 +8,9 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { setFilteredData, products, logout, isAuthenticated } =
+  const { setFilteredData, products, logout, isAuthenticated, cart } =
     useContext(AppContext);
+  console.log("user cart =", cart);
 
   const filterbyCategory = (cat) => {
     setFilteredData(
@@ -51,8 +52,20 @@ const Navbar = () => {
           <div className="right">
             {isAuthenticated && (
               <>
-                <button className="btn btn-warning mx-3">Cart</button>
-                <Link to={"/profile"} className="btn btn-success mx-3">
+                <Link
+                  to={"/cart"}
+                  type="button"
+                  className="btn btn-primary position-relative mx-3"
+                >
+                  <span className="material-symbols-outlined">
+                    shopping_cart
+                  </span>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {cart?.items?.length}
+                    <span className="visually-hidden">unread messages</span>
+                  </span>
+                </Link>
+                <Link to={"/profile"} className="btn btn-info mx-3">
                   Profile
                 </Link>
                 <button

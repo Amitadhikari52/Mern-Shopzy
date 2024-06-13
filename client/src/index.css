@@ -11,52 +11,52 @@ body::-webkit-scrollbar {
 
 /* product details css */
 /* Define hover effects for btn-danger */
-.btn-danger:hover {
-  background-color: darkred; /* Change to a darker red */
-  color: white; /* Change text color to white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-}
+/* .btn-danger:hover {
+  background-color: darkred; 
+  color: white; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s, box-shadow 0.3s; 
+} */
 
 /* Define hover effects for btn-warning */
-.btn-warning:hover {
-  background-color: darkorange; /* Change to a darker orange */
-  color: white; /* Change text color to white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-}
+/* .btn-warning:hover {
+  background-color: darkorange; 
+  color: white; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+} */
 
 /* Define hover effects for btn-primary */
-.btn-primary:hover {
-  background-color: darkblue; /* Change to a darker blue */
-  color: white; /* Change text color to white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-}
+/* .btn-primary:hover {
+  background-color: darkblue; 
+  color: white; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s, box-shadow 0.3s; 
+} */
 
 /* Define hover effects for btn-success */
-.btn-success:hover {
-  background-color: darkgreen; /* Change to a darker green */
-  color: white; /* Change text color to white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-}
+/* .btn-success:hover {
+  background-color: darkgreen; 
+  color: white; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s, box-shadow 0.3s; 
+} */
 
 /* Define hover effects for btn-secondary */
-.btn-secondary:hover {
-  background-color: gray; /* Change to a darker gray */
-  color: white; /* Change text color to white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-}
+/* .btn-secondary:hover {
+  background-color: gray;
+  color: white; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s, box-shadow 0.3s; 
+} */
 
 /* Define hover effects for btn-info */
-.btn-info:hover {
-  background-color: deepskyblue; /* Change to a darker blue */
-  color: white; /* Change text color to white */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
-}
+/* .btn-info:hover {
+  background-color: deepskyblue; 
+  color: white; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s, box-shadow 0.3s; 
+} */
 
 /* related product css */
 .related-product-heading {
