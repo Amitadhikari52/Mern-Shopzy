@@ -60,10 +60,13 @@ const Navbar = () => {
                   <span className="material-symbols-outlined">
                     shopping_cart
                   </span>
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {cart?.items?.length}
-                    <span className="visually-hidden">unread messages</span>
-                  </span>
+
+                  {cart?.items?.length > 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {cart?.items?.length}
+                      <span className="visually-hidden">unread messages</span>
+                    </span>
+                  )}
                 </Link>
                 <Link to={"/profile"} className="btn btn-info mx-3">
                   Profile
@@ -83,10 +86,10 @@ const Navbar = () => {
 
             {!isAuthenticated && (
               <>
-                <Link to={"/login"} className="btn btn-secondary mx-3">
+                <Link to={"/login"} className="btn btn-primary mx-3">
                   Login
                 </Link>
-                <Link to={"/register"} className="btn btn-info mx-3">
+                <Link to={"/register"} className="btn btn-secondary mx-3">
                   Register
                 </Link>
               </>

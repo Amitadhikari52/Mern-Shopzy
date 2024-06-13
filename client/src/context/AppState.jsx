@@ -12,13 +12,14 @@ const AppState = (props) => {
   const [user, setUser] = useState();
   const [cart, setCart] = useState([]);
   const [reload, setReload] = useState(false);
+  const [userAddress, setUserAddress] = useState();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const api = await axios.get(`${URL}/api/product/get-product`, {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "Application/json",
           },
           withCredentials: true,
         });
@@ -32,6 +33,7 @@ const AppState = (props) => {
     };
     fetchProducts();
     userCart();
+    getAddress();
   }, [token, reload]);
 
   useEffect(() => {
@@ -193,6 +195,49 @@ const AppState = (props) => {
     toast.success(api.data.message);
   };
 
+  // add shipping address
+  const shippingAddress = async (
+    fullName,
+    address,
+    city,
+    state,
+    country,
+    pincode,
+    phoneNumber
+  ) => {
+    const api = await axios.post(
+      `${URL}/api/address/add-address`,
+      { fullName, address, city, state, country, pincode, phoneNumber },
+      {
+        headers: {
+          "Content-Type": "Application/json",
+          Authorization: token,
+        },
+        withCredentials: true,
+      }
+    );
+    setReload(!reload);
+    toast.success(api.data.message);
+    return api.data;
+  };
+
+  //get user latest address
+  const getAddress = async () => {
+    try {
+      const api = await axios.get(`${URL}/api/address/get-address`, {
+        headers: {
+          "Content-Type": "Application/json",
+          Authorization: token,
+        },
+        withCredentials: true,
+      });
+      // console.log("user address", api.data);
+      setUserAddress(api.data.userAddress);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -212,6 +257,8 @@ const AppState = (props) => {
         decreaseQty,
         removeFromCart,
         clearCart,
+        shippingAddress,
+        userAddress,
       }}
     >
       {props.children}
