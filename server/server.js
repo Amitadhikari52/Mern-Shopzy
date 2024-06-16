@@ -43,8 +43,6 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/address", addressRoutes);
 app.use("/api/payment", paymentRoutes);
 
-const port = 3009;
-
 app.listen(PORT, () => {
   console.log(`server is running on port ${process.env.PORT}`.bgCyan.white);
 });
