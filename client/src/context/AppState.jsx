@@ -13,7 +13,7 @@ const AppState = (props) => {
   const [cart, setCart] = useState([]);
   const [reload, setReload] = useState(false);
   const [userAddress, setUserAddress] = useState();
-  const [userOrder, setUserOrder] = useState();
+  const [userOrder, setUserOrder] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -245,7 +245,7 @@ const AppState = (props) => {
     const api = await axios.get(`${URL}/api/payment/userorder`, {
       headers: {
         "Content-Type": "Application/json",
-        Auth: token,
+        Authorization: token,
       },
       withCredentials: true,
     });
