@@ -8,6 +8,7 @@ const Cart = () => {
   const [quantity, setQuantity] = useState();
   const [price, setPrice] = useState();
   const navigate = useNavigate();
+
   useEffect(() => {
     let quantity = 0;
     let price = 0;

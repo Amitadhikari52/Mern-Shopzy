@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoute.js";
 import productRoutes from "./routes/productRoute.js";
 import cartRoutes from "./routes/cartRoute.js";
 import addressRoutes from "./routes/addressRoute.js";
+import paymentRoutes from "./routes/paymentRoute.js";
 
 //configure env
 dotenv.config();
@@ -40,6 +41,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/address", addressRoutes);
+app.use("/api/payment", paymentRoutes);
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${process.env.PORT}`.bgCyan.white);
